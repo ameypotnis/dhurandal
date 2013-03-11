@@ -1,0 +1,37 @@
+﻿<section>
+    <h2 data-bind="html: displayName"></h2>
+    <div class="container">
+        <div class="row">
+            <div>
+                <ul data-bind="foreach: appointment().patients">
+                    <li>
+                        <span data-bind="html: firstName"/>
+                        <!--<span data-bind="html: lastName"/>-->
+                        <a data-bind="attr:{href:'#/patient/'+pid}">Show details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <input type="text" data-bind="value: search"
+                   placeholder="type to search..." class="input">
+            <button type="submit" class="btn" data-bind="click: add">Search</button>
+        </div>
+        <div class="row">
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody  data-bind="foreach: results()">
+                <tr>
+                    <td><span data-bind="html: _id"/></td>
+                    <td><span data-bind="html: firstName"/>&nbsp;<span data-bind="html: lastName"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
