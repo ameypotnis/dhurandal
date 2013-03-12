@@ -17,6 +17,7 @@ define(function(require) {
     require('viewmodels/welcome')
     require('viewmodels/flickr')
     require('viewmodels/appointment')
+    require('viewmodels/patient')
 
     //>>excludeStart("build", true);
     system.debug(true);
@@ -33,6 +34,7 @@ define(function(require) {
         router.mapNav('welcome');
         router.mapNav('flickr');
         router.mapNav('appointment');
+        router.mapNav('patient');
 
         app.adaptToDevice();
         

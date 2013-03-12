@@ -6,16 +6,17 @@
         displayName: "Today's Appointment",
         appointment: ko.observableArray([]),
 
-        search: ko.observable(""),
+        searchText: ko.observable(""),
         results: ko.observableArray([]),
 
         activate: function () {
             //the router's activator calls this function and waits for it to complete before proceding
             var that = this;
+            that.appointment.push({"pid":1,"firstName":"Sam","lastName":"Pat"});
 
-            return http.get('http://localhost:3002/appointments/20130311', {}, 'jsoncallback').then(function(response) {
+            /*return http.get('http://localhost:3002/appointments/20130311', {}, 'jsoncallback').then(function(response) {
                 that.appointment(response);
-            });
+            });*/
         },
         select: function(item) {
             //the app model allows easy display of modal dialogs by passing a view model
@@ -27,13 +28,16 @@
             //the router's activator calls this function to see if it can leave the screen
             return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
         },
-        add: function () {
+        search: function () {
             //the router's activator calls this function and waits for it to complete before proceding
             var that = this;
 
-            return http.get('http://localhost:3002/patients/search/'+that.search(), {}, 'jsoncallback').then(function(response) {
+            return http.get('http://localhost:3002/patients/search/'+that.searchText(), {}, 'jsoncallback').then(function(response) {
                 that.results(response);
             });
+        },
+        add: function (data) {
+           alert(parent);
         }
     };
 });

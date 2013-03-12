@@ -1,0 +1,120 @@
+<section>
+    <h1><span data-bind="text: firstName"></span>&nbsp;<span data-bind="text: lastName"></span></h1>
+    <h4>0001 - Cronic case</h4>
+    Jump to <a href="#complaint"><i class="icon-chevron-right"></i>Complaint</a>
+    <a href="#diagnosis"><i class="icon-chevron-right"></i>Diagnosis</a>
+    <a href="#history"><i class="icon-chevron-right"></i>History</a> <a
+        href="#personal"><i class="icon-chevron-right"></i>Personal</a>
+    <div class="container">
+        <div class="row" id="personal">
+            <form class="form-horizontal">
+                <div class="container">
+                    <div class="row">
+                        <div id="legend" class="">
+                            <legend class="">Personal information</legend>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="firstname">Firstname:</label>
+                                    <input id="firstname" required data-bind="value: firstName" type="text" placeholder="First" class="input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="middle">Middle:</label> <input id="middle" data-bind="value: middleName" type="text" placeholder="Middle" class="input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="lastname">Lastname:</label> <input id="lastname" required data-bind="value: lastName" type="text" placeholder="Last" class="input">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="sex">Sex:</label> <select id="sex" required data-bind="value: sex"  class="input-small">
+                                    <option></option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="age">Age:</label> <input id="age" type="text" required data-bind="value: age"  placeholder="Age" class="input-small">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="married">Marital status:</label> <select id="married" data-bind="value: maritalStatus" class="input-small">
+                                    <option></option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <section id="complaint">
+                <legend class="">Complaint</legend>
+                <div class="span8">
+                    <h4>Main</h4>
+                    <textarea rows="5" class="input-xlarge" data-bind="text: complaint"
+                              placeholder="Complaint here..."></textarea>
+                </div>
+                <div class="span4">
+                    <h4>Associated</h4>
+                    <textarea rows="5" class="input-xlarge"
+                              placeholder="Associated Complaint here..."></textarea>
+                </div>
+                <div class="row">
+                    <div class="span6">
+                        <button type="submit" data-bind="click: addHistory" class="btn">Add</button>
+                        <button class="ui-button-primary" data-bind="click: saveHistory">Save</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="row">
+            <section id="history">
+                <legend class="">History</legend>
+                <div data-bind="foreach: histories()"  class="row">
+                    <div class="span6" >
+                        <input type="text" data-bind="value: key"
+                               placeholder="Start typing..." class="input">
+                        <input type="text" data-bind="value: value"
+                               placeholder="value" class="input">
+                        <a class="btn" href="#" data-bind="click:$parent.deleteHistory">Delete</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span6">
+                        <button type="submit" data-bind="click: addHistory" class="btn">Add</button>
+                        <button class="ui-button-primary" data-bind="click: saveHistory">Save</button>
+                    </div>
+                </div>
+                <p class="pull-right">
+                    <a href="#top">Back to top</a>
+                </p>
+            </section>
+        </div>
+    </div>
+</section>
