@@ -1,0 +1,77 @@
+
+<form class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div id="legend" class="">
+                <legend class="">Personal information</legend>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="firstname">Firstname:</label>
+                        <input id="firstname" required data-bind="value: firstName" type="text" placeholder="First" class="input">
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="middle">Middle:</label> <input id="middle" data-bind="value: middleName" type="text" placeholder="Middle" class="input">
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="lastname">Lastname:</label> <input id="lastname" required data-bind="value: lastName" type="text" placeholder="Last" class="input">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="sex">Sex:</label> <select id="sex" required data-bind="value: sex"  class="input-small">
+                        <option></option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="age">Age:</label> <input id="age" type="text" required data-bind="value: age"  placeholder="Age" class="input-small">
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="married">Marital status:</label> <select id="married" data-bind="value: maritalStatus" class="input-small">
+                        <option></option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group">
+                <div class="controls">
+                    <button class="ui-button-primary"  data-bind="click: add">Save</button>
+                    <button data-bind='click: save'>Save to JSON</button>
+                </div>
+            </div>
+            <div class="span4">
+                <h4>Main</h4>
+                <textarea class="input-xlarge" data-bind='value: lastSavedJson' rows='5' cols='160' disabled='disabled'> </textarea>
+            </div>
+        </div>
+    </div>
+</form>

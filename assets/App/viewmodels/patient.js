@@ -14,46 +14,61 @@ define(function (require) {
         sex : ko.observable(blank),
         maritalStatus : ko.observable(blank),
 
-        complaint : ko.observable(blank),
+        complaint : ko.observable(),
         associatedComplaint : ko.observable(blank),
-        histories : ko.observableArray(),
+        histories : ko.observableArray([]),
+        diagnosis : ko.observableArray([]),
 
         activate: function () {
-        var that = this;
-        return http.get(URI + '/patients/5139c8dbb31efb391a000002', {}, 'jsoncallback').then(function(response) {
-            that.objectId(response._id);
-            that.firstName(response.firstName);
-            that.middleName(response.middleName);
-            that.lastName(response.lastName);
-            that.age(response.age);
-            that.sex(response.sex);
-            that.maritalStatus(response.maritalStatus);
-            that.histories(response.histories);
-        });
-    },
-    add: function () {
-
-        patient.viewUrl = 'views/detail';
-        app.showModal(item);
-    },
-    addHistory : function() {
-        this.histories.push({key: '', value: ''});
-    },
-    deleteHistory : function(item) {
-        app.showMessage('Not yet implemented...');
-    },
-    saveHistory : function() {
-        var data = {histories: this.histories()}
-
-        jQuery.ajax({
-            url: URI + "/patients/" + this.objectId(),
-            data: data,
-            type: "PUT",
-            dataType: "json",
-            success: function(data) {
-                alert('History saved successfully');
-            }
-        });
-    }
-};
+            var that = this;
+            return http.get(URI + '/patients/5139c8dbb31efb391a000002', {}, 'jsoncallback').then(function(response) {
+                that.objectId(response._id);
+                that.firstName(response.firstName);
+                that.middleName(response.middleName);
+                that.lastName(response.lastName);
+                that.age(response.age);
+                that.sex(response.sex);
+                that.maritalStatus(response.maritalStatus);
+                that.histories(response.histories);
+                that.diagnosis(response.diagnosis);
+                that.complaint(response.complaint);
+                that.associatedComplaint(response.associatedComplaint);
+            });
+        },
+        addHistory : function() {
+            this.histories.push({key: '', value: ''});
+        },
+        addDiagnosis : function() {
+            this.diagnosis.push({key: '', value: ''});
+        },
+        saveInfo : function() {
+            this.update({
+                firstName: this.firstName(),middleName: this.middleName(),lastName: this.lastName(),
+                age: this.age, sex: this.sex(), maritalStatus:this.maritalStatus()
+            });
+        },
+        saveComplaint : function() {
+            this.update({complaint: this.complaint, associatedComplaint: this.associatedComplaint});
+        },
+        saveHistory : function() {
+            this.update({histories: this.histories()});
+        },
+        saveDiagnosis : function() {
+            this.update({diagnosis: this.diagnosis()});
+        },
+        update : function(data) {
+            jQuery.ajax({
+                url: URI + "/patients/" + this.objectId(),
+                data: data,
+                type: "PUT",
+                dataType: "json",
+                success: function(data) {
+                    alert('Information saved successfully');
+                }
+            });
+        },
+        deleteHistory : function(item) {
+            app.showMessage('Not yet implemented...');
+        }
+    };
 });

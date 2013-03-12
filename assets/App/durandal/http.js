@@ -31,6 +31,15 @@
                 contentType: 'application/json',
                 dataType: 'json'
             });
+        },
+        put:function(url, data) {
+            return $.ajax({
+                url: url,
+                data: ko.toJSON(data),
+                type: 'PUT',
+                contentType: 'application/json',
+                dataType: 'json'
+            });
         }
     };
 });

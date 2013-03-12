@@ -71,24 +71,28 @@
                     </div>
                 </div>
             </form>
+            <div class="row">
+                <div class="span6">
+                    <button class="ui-button-primary" data-bind="click: saveInfo">Save</button>
+                </div>
+            </div>
         </div>
         <div class="row">
             <section id="complaint">
                 <legend class="">Complaint</legend>
                 <div class="span8">
                     <h4>Main</h4>
-                    <textarea rows="5" class="input-xlarge" data-bind="text: complaint"
-                              placeholder="Complaint here..."></textarea>
+                    <textarea rows="5" class="input-xlarge" data-bind="value: complaint"
+                              data-bind="text: complaint" placeholder="Complaint here..."></textarea>
                 </div>
                 <div class="span4">
                     <h4>Associated</h4>
                     <textarea rows="5" class="input-xlarge"
-                              placeholder="Associated Complaint here..."></textarea>
+                              data-bind="value: associatedComplaint" placeholder="Associated Complaint here..."></textarea>
                 </div>
                 <div class="row">
                     <div class="span6">
-                        <button type="submit" data-bind="click: addHistory" class="btn">Add</button>
-                        <button class="ui-button-primary" data-bind="click: saveHistory">Save</button>
+                        <button class="ui-button-primary" data-bind="click: saveComplaint">Save</button>
                     </div>
                 </div>
             </section>
@@ -109,6 +113,29 @@
                     <div class="span6">
                         <button type="submit" data-bind="click: addHistory" class="btn">Add</button>
                         <button class="ui-button-primary" data-bind="click: saveHistory">Save</button>
+                    </div>
+                </div>
+                <p class="pull-right">
+                    <a href="#top">Back to top</a>
+                </p>
+            </section>
+        </div>
+        <div class="row">
+            <section id="diagnosis">
+                <legend class="">Diagnosis</legend>
+                <div data-bind="foreach: diagnosis()"  class="row">
+                    <div class="span6" >
+                        <input type="text" data-bind="value: key"
+                               placeholder="Start typing..." class="input">
+                        <input type="text" data-bind="value: value"
+                               placeholder="value" class="input">
+                        <a class="btn" href="#" data-bind="click:$parent.deleteDiagnosis">Delete</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span6">
+                        <button type="submit" data-bind="click: addDiagnosis" class="btn">Add</button>
+                        <button class="ui-button-primary" data-bind="click: saveDiagnosis">Save</button>
                     </div>
                 </div>
                 <p class="pull-right">
