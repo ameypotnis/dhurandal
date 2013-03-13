@@ -12,21 +12,15 @@
         activate: function () {
             //the router's activator calls this function and waits for it to complete before proceding
             var that = this;
-            that.appointment.push({"pid":1,"firstName":"Sam","lastName":"Pat"});
-
-            /*return http.get('http://localhost:3002/appointments/20130311', {}, 'jsoncallback').then(function(response) {
-                that.appointment(response);
-            });*/
-        },
-        select: function(item) {
-            //the app model allows easy display of modal dialogs by passing a view model
-            //views are usually located by convention, but you an specify it as well with viewUrl
-            item.viewUrl = 'views/detail';
-            app.showModal(item);
-        },
-        canDeactivate: function () {
-            //the router's activator calls this function to see if it can leave the screen
-            return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
+            Date.prototype.yyyymmdd = function() {
+                var yyyy = this.getFullYear().toString();
+                var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+                var dd  = this.getDate().toString();
+                return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+            };
+            return http.get('http://localhost:3002/appointments/' + new Date().yyyymmdd(), {}, 'jsoncallback').then(function(response) {
+                that.appointment(response.patients);
+            });
         },
         search: function () {
             //the router's activator calls this function and waits for it to complete before proceding
@@ -37,7 +31,12 @@
             });
         },
         add: function (data) {
-           alert(parent);
+            data = {url: '#/patient?id=' + data._id, firstName: data.firstName, lastName: data.lastName };
+            return http.put('http://localhost:3002/appointments/' + new Date().yyyymmdd(), data, 'jsoncallback').then(function(response) {
+            });
+        },
+        newPatient: function (data) {
+            alert(parent);
         }
     };
 });

@@ -15,7 +15,6 @@ define(function(require) {
     require('durandal/transitions/entrance')
     require('viewmodels/shell')
     require('viewmodels/welcome')
-    require('viewmodels/flickr')
     require('viewmodels/appointment')
     require('viewmodels/patient')
 
@@ -32,7 +31,6 @@ define(function(require) {
         //configure routing
         router.useConvention();
         router.mapNav('welcome');
-        router.mapNav('flickr');
         router.mapNav('appointment');
         router.mapNav('patient');
 

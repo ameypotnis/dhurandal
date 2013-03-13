@@ -7,7 +7,7 @@
                     <li>
                         <span data-bind="html: firstName"/>
                         <span data-bind="html: lastName"/>
-                        <a data-bind="attr:{href:'#/patient/'+pid}">Show details</a>
+                        <!--<a data-bind="attr:{href: url}">Show details</a>-->
                     </li>
                 </ul>
             </div>
@@ -17,7 +17,7 @@
                    placeholder="type to search..." class="input">
             <button type="submit" class="btn" data-bind="click: search">Search</button>
         </div>
-        <div class="row">
+        <div class="row" data-bind="visible: (searchText() && results().length > 0)">
             <table class="table table-condensed table-hover">
                 <thead>
                 <tr>
@@ -29,10 +29,47 @@
                 <tr>
                     <td><span data-bind="html: _id"/></td>
                     <td><span data-bind="html: firstName"/>&nbsp;<span data-bind="html: lastName"/></td>
-                    <td><a class="btn" href="#" data-bind="click:$parent.add">Add</a></td>
+                    <td><a class="btn" href="#" data-bind="click:$parent.results($parent.add)">Add</a></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="row" data-bind="visible: (searchText() && results().length == 0)">
+            <div class="alert alert-block">
+                Could not find patient in record, do you want to add  new?
+            </div>
+        </div>
+        <div class="row" data-bind="visible: (searchText() && results().length == 0)">
+            <form class="form-horizontal">
+                <div class="container">
+                    <div class="span4">
+                        <div class="control-group">
+                            <div class="controls">
+                                <label for="firstname">Firstname:</label>
+                                <input id="firstname" required data-bind="value: firstName" type="text" placeholder="First" class="input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="control-group">
+                            <div class="controls">
+                                <label for="lastname">Lastname:</label> <input id="lastname" required data-bind="value: lastName" type="text" placeholder="Last" class="input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="ui-button-primary"  data-bind="click: add">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>

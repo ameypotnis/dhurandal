@@ -19,9 +19,9 @@ define(function (require) {
         histories : ko.observableArray([]),
         diagnosis : ko.observableArray([]),
 
-        activate: function () {
+        activate: function (input) {
             var that = this;
-            return http.get(URI + '/patients/5139c8dbb31efb391a000002', {}, 'jsoncallback').then(function(response) {
+            return http.get(URI + '/patients/' + (input.id || ''), {}, 'jsoncallback').then(function(response) {
                 that.objectId(response._id);
                 that.firstName(response.firstName);
                 that.middleName(response.middleName);
@@ -29,8 +29,8 @@ define(function (require) {
                 that.age(response.age);
                 that.sex(response.sex);
                 that.maritalStatus(response.maritalStatus);
-                that.histories(response.histories);
-                that.diagnosis(response.diagnosis);
+                that.histories(response.histories || []);
+                that.diagnosis(response.diagnosis || []);
                 that.complaint(response.complaint);
                 that.associatedComplaint(response.associatedComplaint);
             });
@@ -68,7 +68,8 @@ define(function (require) {
             });
         },
         deleteHistory : function(item) {
-            app.showMessage('Not yet implemented...');
+            alert(JSON.stringify(item));
+            alert($);
         }
     };
 });
